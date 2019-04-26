@@ -7,6 +7,12 @@ import gdb
 
 # Usage: gdb -q -x prog.py
 
+## This code will run whenever a breakpoint is hit
+def stop_handler(event):
+    print(gdb.execute('x/wx $sp', to_string=True))
+    
+gdb.events.stop.connect(stop_handler)
+
 gdb.execute('file ./example')
 o = gdb.execute('disassemble pwnme', to_string=True)
 print(o)
