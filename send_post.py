@@ -1,3 +1,5 @@
+#!/usr/bin/python2
+
 import socket
 
 host = "ip_address"
